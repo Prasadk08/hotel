@@ -1,0 +1,17 @@
+/* Services */
+.services-cards{
+
+    margin-top: 30px;
+}
+.card{
+    margin-right: 30px;
+
+}
+.service-card-img{
+    padding-top: 21px;
+    text-align: center;
+    font-size: 6.5rem;
+}
+.textdec{
+    text-decoration: none !important;
+}
