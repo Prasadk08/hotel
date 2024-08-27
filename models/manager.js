@@ -20,3 +20,6 @@ const managerSchema = new Schema({
 
 managerSchema.plugin(passportlocalmongoose)
 module.exports= mongoose.model("Manager",managerSchema)
+
+
+// sir aap jab bhi pehli bar login karoge to req.user me object store hote hai lekin aap jab bhi session logout karke waiter login se login karoge to login to hota hai lekin woh req.user me object dta store nahi kar raha hai

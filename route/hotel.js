@@ -37,8 +37,9 @@ router.get("/addwaiter",isLoggedIn,async(req,res)=>{
 router.post("/addwaiter",async(req,res)=>{
     let{name,phno,username,password}=req.body.waiter
 
-    let newwaiter = new Waiter({name,phno,username})
+    let newwaiter = new Waiter({name,phno,username,role: 'Waiter'})
     await Waiter.register(newwaiter,password)
+    
 
     let {hoteldetails}=res.locals.currUser
     let hotelinfo = await Hotel.findById(hoteldetails)

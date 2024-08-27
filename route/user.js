@@ -30,7 +30,6 @@ router.post("/managerlogin",
             if (err) console.log('Session save error:', err);
         });
 
-
         res.render("hotel/home.ejs");
     }
 );
@@ -50,16 +49,16 @@ router.post("/waiterlogin",
     async(req,res)=>{
         let {username}=req.body
         let newhoteldetail = await Waiter.findOne({username}).populate("hotelid")
-        console.log(newhoteldetail)
+
         newhoteldetail =newhoteldetail.hotelid
-        console.log(newhoteldetail)
 
         req.session.save((err) => {
             if (err) console.log('Session save error:', err);
         });
 
         res.render("hotel/home",{newhoteldetail})
-})
+    }
+)
 
 router.get("/signup",(req,res)=>{
     res.render("user/signup.ejs")
@@ -70,7 +69,7 @@ router.post("/signup",uniqueUsername,async(req,res)=>{
 try{
     console.log("inside business logic")
     let{email,username,password}=req.body
-    let newuser = new Manager({email,username})
+    let newuser = new Manager({email,username,role: 'Manager'})
     await Manager.register(newuser,password)
     req.login(newuser,(err)=>{
         if(err){

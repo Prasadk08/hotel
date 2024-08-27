@@ -173,10 +173,12 @@ router.get("/showmenucard",async(req,res)=>{
 router.get("/myservings",async(req,res)=>{
     console.log(req.user)
     let {username}=req.user
-    let newhoteldetail = await Manager.findOne({username}).populate("hoteldetails")
+    
+    let newhoteldetail = await Manager.findOne({ username: req.user.username }).populate('hoteldetails');
+
     let orders=newhoteldetail.hoteldetails.orders
     res.render("kitchen/myservings.ejs",{orders})
-})
+})  
 
 router.get("/test",(req,res)=>{
 
