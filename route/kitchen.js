@@ -174,9 +174,9 @@ router.get("/myservings",async(req,res)=>{
     console.log(req.user)
     let {username}=req.user
     
-    let newhoteldetail = await Manager.findOne({ username: req.user.username }).populate('hoteldetails');
+    let newhoteldetail = await Waiter.findByUsername(username).populate('hotelid');
 
-    let orders=newhoteldetail.hoteldetails.orders
+    let orders=newhoteldetail.hotelid.orders
     res.render("kitchen/myservings.ejs",{orders})
 })  
 

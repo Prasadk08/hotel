@@ -74,7 +74,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await Manager.findByUsername(id) || await Waiter.findByUsername(id);
+    console.log(id)
+    const user = await Manager.findById(id) || await Waiter.findById(id);
+    console.log(user)
     done(null, user);
   } catch (err) {
     done(err);
@@ -90,7 +92,7 @@ app.use(async (req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   res.locals.foodCategory = ['starters', 'soups', 'maincourse', 'breads', 'riceandbiryani', 'chinese'];
-  console.log('Current User:', req.user);
+  console.log('Hare krishna GaruNitai ki Jai Radhe Radhe:', req.user);
 
   if (req.isAuthenticated() && req.user) {
     if (req.user.role === "Manager") {
