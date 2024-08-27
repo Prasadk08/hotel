@@ -1,0 +1,29 @@
+<% layout('/layout/boilerplate2') -%>
+
+
+<div class="row offset-2 mt-3">
+<% if(orders.length>0) { %>
+    <% for(order of orders) { %>
+        <% if(order.waiterid==currUser || currUser.role=='Manager') { %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><%= order.tableno %></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% for(item of order.orderedfood) { %>
+                    <li class="list-group-item"><%= item.foodname %> &nbsp;&nbsp; <%= item.foodquantity %></li>
+                    <% } %>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        <% } else { %>
+            <h2>Currently You have no any orders</h2>
+        <% } %>
+        <% } %>
+<% }else{ %>
+        <h2>Currently There is no any orders</h2>
+<% } %>
+</div>

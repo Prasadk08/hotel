@@ -18,9 +18,17 @@ const hotelSchema = new Schema({
         type:mongoose.Schema.ObjectId,
         ref:"Waiter"
     }],
-    menucard:[{
+    menucard:{
         type:mongoose.Schema.ObjectId,
         ref:"MenuCard"
+    },
+    orders:[{
+        tableno:Number,
+        waiterid:{
+            type:mongoose.Schema.ObjectId,
+            ref:"Waiter",
+        },
+        orderedfood:[{}]
     }]
 
 })

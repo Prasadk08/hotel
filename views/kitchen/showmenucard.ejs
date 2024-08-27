@@ -1,18 +1,51 @@
 <% layout('/layout/boilerplate2') -%>
-<h2>Showing Menu Card</h2>
-<ul class="list-group col-6 offset-3">
-  <li class="list-group-item active" aria-current="true">An active item</li>
+<h2 style="text-align: center;">Showing Menu Card</h2>
 
-  <li class="list">
-      <span>VegNoodles</span>
-      <span>120</span>
-  </li>
-  <li class="list">
-      <span>VegNodsfgsfdodles</span>
-      <span>120</span>
-  </li>
-  <li class="list">
-      <span>VegNoofgsdfgdles</span>
-      <span>120</span>
-  </li>
-</ul>
+<style>
+    body {
+        background-color: #fcf6bd;
+    }
+    .main-title {
+        list-style: none !important;
+        background-color: #ff9500!important;
+        color: black!important;
+        height: 42px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        font-size: 1.3rem !important;
+        font-weight: bolder !important;
+        border-radius: 2px !important;
+    }
+    .list {
+        background-color: #f5cb5c !important;
+        list-style: none !important;
+        display: flex !important;
+        justify-content: space-evenly; /* Adjusted for spacing */
+        border-bottom: 2px solid white !important;
+        align-items: center !important;
+        height: 40px !important;
+        font-size: 1.1rem !important;
+        color: black!important;
+        font-weight: bold !important;
+        padding: 0 10px; /* Added padding for spacing */
+        box-sizing: border-box; /* Ensures padding is included in element width/height */
+    }
+</style>
+
+
+
+<!-- Menu Card HTML -->
+<% for (data of foodCategory) { %>
+    <div class="row col-8 offset-2">
+        <ul class="list-group col">
+            <li class="list-group-item main-title" aria-current="true"><%= data.toUpperCase() %></li>
+            <% for (item of hotelmenucard[data]) { %>
+                <li class="list">
+                    <span><%= item.foodname.toUpperCase() %></span>
+                    <span>&#8377;<%= item.foodprice %></span>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+<% } %>

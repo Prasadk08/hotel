@@ -2,31 +2,30 @@ const mongoose = require('mongoose');
 const {Schema}= mongoose;
 
 const menucardSchema = new Schema({
-    starters:[{
+    starters: [{
         foodname:String,
         foodprice:Number
     }],
-    soups:[{
+    soups: [{
         foodname:String,
         foodprice:Number
     }],
-    maincourse:[{
+    maincourse: [{
         foodname:String,
         foodprice:Number
     }],
-    breads:[{
+    breads: [{
         foodname:String,
         foodprice:Number
     }],
-    riceandbiryani:[{
+    riceandbiryani: [{
         foodname:String,
         foodprice:Number
     }],
-    chinese:[{
+    chinese: [{
         foodname:String,
         foodprice:Number
     }]
 })
 
 module.exports = mongoose.model("MenuCard",menucardSchema)
-

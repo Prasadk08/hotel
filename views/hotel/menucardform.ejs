@@ -3,18 +3,17 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>Adding Menu card</h1>
-        <form method="POST" action="/services" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded">
+        <form method="POST" action="/kitchen/addmenucard" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded">
 
             <select name="menu[item]" class="form-select form-select-lg mb-3" aria-label="Large select example">
                 <option selected>Select Collection Type</option>
-                <option  value="Starters">Starters</option>
-                <option  value="Soups">Soups</option>
-                <option  value="Main">Main Course</option>
-                <option  value="Breads">Breads</option>
-                <option  value="Rice">Rice and Biryani</option>
-                <option  value="Chinese">Chinese</option>
-              </select>
-
+                <option  value="starters">Starters</option>
+                <option  value="soups">Soups</option>
+                <option  value="maincourse">Main Course</option>
+                <option  value="breads">Breads</option>
+                <option  value="riceandbiryani">Rice and Biryani</option>
+                <option  value="chinese">Chinese</option>
+            </select>
           <div class="mb-2">
             <label for="title" class="form-label">Enter Food Name</label>
             <input type="text" name="menu[foodname]" class="form-control" placeholder="Enter Food Name" required>

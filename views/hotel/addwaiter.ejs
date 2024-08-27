@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-8 offset-2">
       <h1>Adding New Waiter</h1>
-      <form method="POST" action="/hotel/addwaiter" novalidate class="needs-validation" enctype="multipart/form-data">
+      <form method="POST" action="/hotel/addwaiter" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded"">
         <div class="mb-2">
           <label for="title" class="form-label">Enter Waiter Name</label>
           <input type="text" name="waiter[name]" class="form-control" placeholder="Enter Waiter Name" required>
@@ -10,17 +10,17 @@
         </div>
         <div class="mb-2">
           <label for="description" class="form-label">Enter PhNO.</label>
-          <input type="number" name="waiter[phno]"class="form-control" placeholder="Enter PhNO." required>
+          <input type="number" name="waiter[phno]" class="form-control" placeholder="Enter PhNO." required>
           <div class="invalid-feedback">Please enter a short Description</div>
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Enter Username for waiter</label>
-            <input type="text" name="username"class="form-control" placeholder="Enter Username" required>
+            <input type="text" name="waiter[username]" class="form-control" placeholder="Enter Username" required>
             <div class="invalid-feedback">Please Enter Username</div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Enter Password</label>
-            <input type="password" name="password"class="form-control" placeholder="Enter Password " required>
+            <input type="password" name="waiter[password]" class="form-control" placeholder="Enter Password " required>
             <div class="invalid-feedback">Please Enter Password</div>
           </div>
         <br>

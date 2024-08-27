@@ -8,10 +8,16 @@ const waiterSchema = new Schema({
     name:{
         type:String
     },
-    phNo:{
+    phno:{
         type:Number
     },
-    hoteid:{
+
+    role: {
+        type: String,
+        enum: ['Waiter'],
+        default: 'Waiter',
+    },
+    hotelid:{
         type:mongoose.Schema.ObjectId,
         ref:"Hotel"
     }

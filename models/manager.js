@@ -10,6 +10,11 @@ const managerSchema = new Schema({
     hoteldetails:{
         type:mongoose.Schema.ObjectId,
         ref:"Hotel"
+    },
+    role: {
+        type: String,
+        enum: ['Manager'],
+        default: 'Manager',
     }
 })
 
