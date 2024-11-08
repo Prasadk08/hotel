@@ -17,13 +17,15 @@ function demo(event) {
     const inputField = counterContainer.querySelector('.counter-input');
     inputField.value = 1;
 
+
     // Add item to order array with food type
     order.push({
         id: foodId,
         foodname: foodName,
         foodprice: parseInt(foodPrice),
         quantity: 1,
-        type: foodType // Include food type
+        deliverstatus:false,
+        addat:-1
     });
     console.log(order);
 }
@@ -80,7 +82,8 @@ document.getElementById('placeorder').addEventListener('click', function (event)
 
     const tableNumber = document.querySelector('input[name="listing[title]"]').value;
 
-    fetch('/kitchen/placeorder', {
+
+    fetch('/waiter/placeorder', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

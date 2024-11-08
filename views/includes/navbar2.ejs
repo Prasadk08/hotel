@@ -1,30 +1,71 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Hotel <%= testhotelname %></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/hotel/home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/hotel/services">services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/hotel/addwaiter">Add waiter</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/kitchen/placeorder">Take Order</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/kitchen/myservings">My Servings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
+<style>
+  /* Navbar Custom Styling */
+.navbar {
+  background-color: #2c3e50; /* Dark background */
+  font-size: 0.9rem;
+}
+
+.navbar .navbar-brand {
+  color: #ecf0f1 !important;
+}
+
+.navbar .nav-link {
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #f39c12 !important; /* Hover effect for links */
+}
+
+.navbar .nav-link.active {
+  color: #f39c12 !important;
+  font-weight: bold;
+}
+
+.navbar .nav-link.text-danger {
+  color: #e74c3c !important; /* Logout link style */
+}
+
+.navbar-toggler {
+  border: none; /* Remove border around toggler */
+}
+
+.container-fluid{
+  height: 36px;
+}
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3 fw-bold text-light" href="#">Hotel <%= testhotelname %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="/hotel/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/hotel/services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/hotel/addwaiter">Add Waiter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/waiter/placeorder">Take Order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/kitchen/myservings">My Servings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/kitchen/currentorders">Current Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger fw-bold" href="/logout">Logout</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const {Schema}=mongoose
 const Waiter= require('./waiter')
 const MenuCard = require('./menucard.js')
-
+const { date } = require('joi')
 
 const hotelSchema = new Schema({
     hotelname:{
@@ -29,10 +29,27 @@ const hotelSchema = new Schema({
             ref:"Waiter",
         },
         orderedfood:[{}]
+    }],
+    dailybills:[
+        {
+            date: { type: Date},
+            todaysbill:[Number]
+        }
+    ],
+    sections: [{
+        name: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        capacity: {
+            type: Number,
+            required: true,
+            min: 1
+        }
     }]
 
 })
 
-const Hotel = mongoose.model("Hotel",hotelSchema)
+module.exports = mongoose.model("Hotel",hotelSchema)
 
-module.exports=Hotel

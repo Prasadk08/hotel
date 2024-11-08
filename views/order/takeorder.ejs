@@ -1,0 +1,337 @@
+<% layout('/layout/boilerplate2') -%>
+<style>
+
+.menucard {
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Spacing inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    margin-top: 30px; /* Space from the top */
+}
+
+/* Styling for the menu title (food category) */
+.main-title {
+    font-size: 1.4rem; /* Increase font size */
+    font-weight: bold; /* Bold text */
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 10px; /* Padding inside the title */
+    text-align: center; /* Center the text */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 15px; /* Space between categories */
+}
+
+/* Styling for each food item */
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px; /* Spacing inside each food item */
+    background-color: white; /* White background for each item */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between items */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect for food items */
+.list:hover {
+    transform: scale(1.02); /* Slight zoom effect */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+/* Add button styling */
+.add-btn {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 8px 15px; /* Padding for button */
+    font-size: 0.9rem; /* Adjust font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Add button hover effect */
+.add-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Unified counter container for +, -, and input */
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 110px; /* Adjust width to fit the buttons and input */
+    margin-left: 10px; /* Space between item and counter */
+    border: 1px solid #ddd; /* Single border around the entire counter */
+    border-radius: 5px; /* Rounded corners for the entire component */
+    overflow: hidden; /* Ensure nothing overflows the borders */
+}
+
+/* Styling for plus and minus buttons (unified look) */
+.plus-btn, .minus-btn {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove individual borders */
+    font-size: 1rem; /* Font size */
+    padding: 8px 12px; /* Padding inside buttons */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+    width: 30%; /* Give each button 30% width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hover effect for plus and minus buttons */
+.plus-btn:hover, .minus-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Styling for the counter input (unified look) */
+.counter-input {
+    width: 40%; /* Allow the input to take the rest of the space */
+    text-align: center; /* Center the number */
+    border: none; /* Remove individual borders */
+    padding: 5px; /* Padding inside input */
+    background-color: white; /* White background to match buttons */
+    font-size: 1rem; /* Make text size consistent */
+}
+
+/* Button to show/hide the menu */
+#placeorder {
+    background-color: #17a2b8; /* Blue-green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for button */
+    font-size: 1.1rem; /* Font size */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    margin-top: 20px; /* Space from the top */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for Place Order button */
+#placeorder:hover {
+    background-color: #138496; /* Darker blue-green on hover */
+}
+/* Cancel button styling */
+.cancel-button {
+    background-color: #dc3545; /* Red background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 8px 15px; /* Padding for button */
+    font-size: 0.9rem; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+    width: 100px;
+    position: relative;
+    right: 50px;
+}
+
+/* Cancel button hover effect */
+.cancel-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Add items button styling */
+.add-items-btn {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 10px 15px; /* Padding for button */
+    font-size: 1rem; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+    position: relative;
+    top: 12px;
+}
+
+/* Hover effect for Add Items button */
+.add-items-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Edit Order button styling */
+.edit-order-btn {
+    background-color: #007bff !important; /* Blue-green background */
+    color: white; /* White text */
+    padding: 10px 15px !important; /* Padding for button */
+    font-size: 1rem !important; /* Font size */
+    border: none; /* Remove borders */
+    border-radius: 5px !important; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for Edit Order button */
+.edit-order-btn:hover {
+    background-color: #138496; /* Darker blue-green on hover */
+}
+
+/* Create Bill button styling */
+.create-bill-btn {
+    background-color: #007bff !important; /* Green background */
+    color: white; /* White text */
+    padding: 10px 15px !important; /* Padding for button */
+    font-size: 1rem !important; /* Font size */
+    border: none; /* Remove borders */
+    border-radius: 5px !important; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for Create Bill button */
+.create-bill-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+
+</style>
+<input type="hidden" id="tableNumber" value="<%= i %>">
+
+<ul id="order-list">
+    <% if(order) {%>
+    <% for(ordere of order.orderedfood){ %>
+    <ol class="list-group list-group-numbered mt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-start okay" data-foodid="<%= ordere.id %>" data-foodprice="<%= ordere.foodprice %>" data-foodname="<%= ordere.foodname %>" data-deliverstatus="<%= ordere.deliverstatus %>">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= ordere.foodname %></div>
+          </div>
+            <button class="cancel-button">Cancel</button>
+            <div class="quantity">
+                <p><%= ordere.quantity %></p>
+            </div>
+        </li>
+      </ol>
+    <% } %>
+    <% }else{ %>
+        <h2>Currently there is no any orders</h2>
+    <% } %>
+</ul>
+
+<button onclick="showmenu()" class="add-items-btn">Add items</button>
+<% if(order){ %>
+    <button id="placeorder" class="show-order-btn btn  edit-order-btn" data-order-id="<%= order._id %>">Edit order</button>
+<a href="/hotel/payment/bill/<%= order._id %>"><button id="placeorder" class="btn btn-primary create-bill-btn">Create Bill</button></a>
+<% } %>
+  <div class="menucard" style="display: none;">
+  <% for (data of foodCategory) { %>
+    <div class="row col-8 offset-2">
+        <ul class="list-group col">
+            <li class="list-group-item main-title" aria-current="true"><%= data.toUpperCase() %></li>
+            <% for (item of hotelmenucard[data]) { %>
+                <li class="list" data-foodid="<%= item.id %>" data-foodtype="<%= data %>">
+                    <span><%= item.foodname.toUpperCase() %></span>
+                    <span>&#8377;<%= item.foodprice %></span>
+                    <button class="btn add-btn" onclick="demo(event)">Add</button>
+                    <div class="counter-container" style="display: none;">
+                        <button class="minus-btn">-</button>
+                        <input type="text" class="counter-input" value="1" readonly />
+                        <button class="plus-btn">+</button>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+<% } %>
+
+<button id="placeorder" type ="submit" class="btn btn-primary btn-decor" onclick="placeOrderHandler()">Place Order</button>
+
+</div>
+
+<script>
+
+    let order = [];
+
+    function demo(event) {
+        let button = event.target;
+        let listItem = button.closest('.list');
+        let foodId = listItem.getAttribute('data-foodid');
+        let foodName = listItem.querySelector('span').textContent.trim();
+        let foodPrice = listItem.querySelector('span:nth-child(2)').textContent.trim().replace('₹', '');
+
+        // Add this item to the order array
+        order.push({
+            id: foodId,
+            foodname: foodName,
+            foodprice: parseInt(foodPrice),
+            quantity: 1
+        });
+
+        // Show + and - buttons
+        let counterContainer = listItem.querySelector('.counter-container');
+        counterContainer.style.display = 'flex'; // Make it visible
+
+        // Hide the add button
+        button.style.display = 'none';
+        console.log(order);
+    }
+
+    // Event delegation for the + and - buttons
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('plus-btn')) {
+            let listItem = event.target.closest('.list');
+            let foodId = listItem.getAttribute('data-foodid');
+
+            // Increment quantity for this food in the order array
+            let item = order.find(o => o.id === foodId);
+            if (item) {
+                item.quantity += 1;
+                listItem.querySelector('.counter-input').value = item.quantity;
+            }
+        } else if (event.target.classList.contains('minus-btn')) {
+            let listItem = event.target.closest('.list');
+            let foodId = listItem.getAttribute('data-foodid');
+
+            // Decrement quantity for this food in the order array
+            let item = order.find(o => o.id === foodId);
+            if (item && item.quantity > 1) {
+                item.quantity -= 1;
+                listItem.querySelector('.counter-input').value = item.quantity;
+            }
+        }
+    });
+
+    function placeOrderHandler() {
+
+        let tableNumber = document.getElementById('tableNumber').value;
+        console.log(tableNumber);
+
+        fetch(`/waiter/takeorder/${tableNumber}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                order: order, // The current order object
+                tableNumber: tableNumber // The current table number
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Order placed successfully');
+                // Reset the order array
+                order = [];
+                window.location.href = `/waiter/takeorder/${tableNumber}`;
+            } else {
+                console.error('Failed to place order');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function showmenu() {
+        let menucard = document.querySelector('.menucard');
+        if (menucard.style.display == "none") {
+            menucard.style.display = 'block';
+        } else {
+            menucard.style.display = 'none';
+        }
+    }
+
+</script>
+<script src="/js/showorder.js"></script>

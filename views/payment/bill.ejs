@@ -1,0 +1,66 @@
+<% layout('/layout/boilerplate2') -%>
+<style>
+    .bill-container {
+        width: 80%;
+        margin: auto;
+        background-color: #fcf6bd;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+    }
+    .bill-header, .bill-footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .bill-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .bill-table th, .bill-table td {
+        border: 1px solid #e0e0e0;
+        padding: 10px;
+        text-align: left;
+    }
+    .bill-table th {
+        background-color: #fdf0d5;
+    }
+    .total-amount {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+    }
+</style>
+<div class="bill-container">
+    <h2 style="text-align: center; "><i>Hotel <%= testhotelname %></i></h2>
+    <div class="bill-header">
+        <h2>Bill for Table <%= order.tableno %></h2>
+        <p>Served by: <%= waitername.name %></p>
+    </div>
+    <table class="bill-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% order.orderedfood.forEach(item => { %>
+                <tr>
+                    <td><%= item.foodname %></td>
+                    <td><%= item.quantity %></td>
+                    <td>₹<%= item.foodprice %></td>
+                    <td>₹<%= item.foodprice * item.quantity %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="total-amount">
+        <p>Total: ₹<%= totalBill %></p>
+    </div>
+    <div class="bill-footer">
+        <p>Thank you for dining with us!</p>
+    </div>
+</div>

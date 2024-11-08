@@ -1,32 +1,75 @@
 <% layout('/layout/boilerplate2') -%>
-<div class="row">
-    <div class="col-8 offset-2">
-      <h1>Adding New Waiter</h1>
-      <form method="POST" action="/hotel/addwaiter" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded"">
-        <div class="mb-2">
-          <label for="title" class="form-label">Enter Waiter Name</label>
-          <input type="text" name="waiter[name]" class="form-control" placeholder="Enter Waiter Name" required>
-          <div class="invalid-feedback">Please enter a title</div>
-        </div>
-        <div class="mb-2">
-          <label for="description" class="form-label">Enter PhNO.</label>
-          <input type="number" name="waiter[phno]" class="form-control" placeholder="Enter PhNO." required>
-          <div class="invalid-feedback">Please enter a short Description</div>
-        </div>
-        <div class="mb-3">
-            <label for="username" class="form-label">Enter Username for waiter</label>
-            <input type="text" name="waiter[username]" class="form-control" placeholder="Enter Username" required>
-            <div class="invalid-feedback">Please Enter Username</div>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Enter Password</label>
-            <input type="password" name="waiter[password]" class="form-control" placeholder="Enter Password " required>
-            <div class="invalid-feedback">Please Enter Password</div>
-          </div>
-        <br>
-        <button class="btn btn-primary btn-decor">Submit</button>
-      </form>
+<style>
+  /***** Form Styling *****/
+.form-container {
+    padding-top: 40px;
+}
+
+.form-card {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-weight: 700;
+    color: #333;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.btn-decor {
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-decor:hover {
+    background-color: #0056b3;
+}
+
+</style>
+
+<div class="row justify-content-center form-container">
+    <div class="col-10 col-md-8 col-lg-6">
+        <h1 class="text-center mb-4">Add a New Waiter</h1>
+        <form method="POST" action="/hotel/addwaiter" novalidate class="needs-validation form-card" enctype="application/x-www-form-urlencoded">
+            <div class="mb-3">
+                <label for="name" class="form-label">Waiter Name</label>
+                <input type="text" name="waiter[name]" class="form-control" placeholder="Enter Waiter Name" required>
+                <div class="invalid-feedback">Please enter waiter Name</div>
+            </div>
+            <div class="mb-3">
+                <label for="phno" class="form-label">Phone Number</label>
+                <input type="number" name="waiter[phno]" class="form-control" placeholder="Enter Phone Number" required>
+                <div class="invalid-feedback">Please enter a valid phone number</div>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="waiter[username]" class="form-control" placeholder="Enter Username" required>
+                <div class="invalid-feedback">Please enter a username</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="waiter[password]" class="form-control" placeholder="Enter Password" required>
+                <div class="invalid-feedback">Please enter a password</div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary btn-decor px-4 py-2">Submit</button>
+            </div>
+        </form>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 const {Schema}= require('mongoose')
-const passportlocalmongoose = require('passport-local-mongoose')
-
 
 const waiterSchema = new Schema({
 
@@ -20,10 +18,18 @@ const waiterSchema = new Schema({
     hotelid:{
         type:mongoose.Schema.ObjectId,
         ref:"Hotel"
-    }
+    },
+    myservings: [{
+        cancelleditems:{
+            type:[String]
+        },
+        tableno: {
+            type: Number
+        },
+        serving: [{}]
+    }]
 })
 
-waiterSchema.plugin(passportlocalmongoose)
 const Waiter = mongoose.model("Waiter",waiterSchema)
 
 module.exports=Waiter

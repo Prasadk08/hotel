@@ -10,9 +10,11 @@ const flash = require('connect-flash');
 
 const hotelRoute = require('./route/hotel');
 const kitchenRoute = require('./route/kitchen');
+const waiterRoute = require('./route/waiter');
 const userRoute = require('./route/user');
-const Manager = require('./models/manager');
-const Waiter = require('./models/waiter');
+const User = require('./models/user');
+
+const Hotel = require('./models/hotel');
 
 if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
@@ -65,8 +67,8 @@ const sessionOptions = {
 
 app.use(session(sessionOptions));
 
-passport.use('manager-local', new LocalStrategy(Manager.authenticate()));
-passport.use('waiter-local', new LocalStrategy(Waiter.authenticate()));
+passport.use('user-local', new LocalStrategy(User.authenticate()));
+
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -74,9 +76,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    console.log(id)
     const user = await Manager.findById(id) || await Waiter.findById(id);
-    console.log(user)
     done(null, user);
   } catch (err) {
     done(err);
@@ -92,24 +92,20 @@ app.use(async (req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   res.locals.foodCategory = ['starters', 'soups', 'maincourse', 'breads', 'riceandbiryani', 'chinese'];
-  console.log('Hare krishna GaruNitai ki Jai Radhe Radhe:', req.user);
 
-  if (req.isAuthenticated() && req.user) {
-    if (req.user.role === "Manager") {
-      let data = await Manager.findByUsername(req.user.username).populate('hoteldetails');
-      req.session.testhotelname = data.hoteldetails.hotelname;
-    } else if (req.user.role === 'waiter') {
-      let data2 = await Waiter.findByUsername(req.user.username).populate('hotelid');
-      req.session.testhotelname = data2.hotelid.hotelname;
-    }
-    console.log('Hotel Name in Session:', req.session.testhotelname);
+
+  if (req.user && req.user.hotelid) {
+    let data = await Hotel.findById(req.user.hotelid)
+    req.session.testhotelname = data.hotelname;
   }
-  res.locals.testhotelname = req.session.testhotelname || 'Default Hotel Name';
+
+  res.locals.testhotelname = req.session.testhotelname || 'Prasad';
   next();
 });
 
 app.use("/hotel", hotelRoute);
 app.use("/kitchen", kitchenRoute);
+app.use("/waiter", waiterRoute);
 app.use("/", userRoute);
 
 app.get("/", (req, res) => {

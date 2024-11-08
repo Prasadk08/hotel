@@ -1,0 +1,88 @@
+<% layout('/layout/boilerplate2') -%>
+<style>
+    body {
+        background-color: #fcf6bd;
+        height: 100vh; /* Full viewport height */
+    }
+
+    .ulback {
+        background-color: #fdf0d5 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: 100% !important; /* Takes full height of the parent column */
+        padding: 10px; /* Optional padding */
+    }
+
+    .red {
+        background-color: #ffd6e0 !important;
+        color: red !important;
+    }
+
+    .green {
+        background-color: #affc41 !important;
+        color: black !important;
+    }
+
+    .btn-decor {
+        background-color: #fe424d !important;
+        color: white !important;
+        border: none !important;
+        height: 37.6px;
+        padding: 6px 12px;
+    }
+
+    .ulback ul {
+        flex-grow: 1; /* Allow the ul to grow and take available space */
+    }
+
+    .ulback ul li {
+        margin-top: 4px;
+    }
+
+    .boddy {
+        display: flex !important;
+        justify-content: space-around !important;
+        margin-bottom: 2px !important;
+        margin-top: auto !important;
+    }
+
+    .marg {
+        margin-left: -5px !important;
+    }
+
+    .col-4 {
+        display: flex;
+        flex-direction: column;
+        height: 450px;
+    }
+</style>
+
+<% if(orders.length > 0) { %>
+    <div class="row offset-1 marg">
+        <% for(order of orders) { %>
+            <div class="col-4 mt-4">
+                <div class="ulback">
+                    <h5 style="text-align: center;">Table <%= order.tableno %></h5>
+                    <ul class="list-group list-group-flush">
+                        <% for(item of order.orderedfood) { %>
+                            <% if(!item.deliverstatus) { %>
+                                <li class="list-group-item red"><%= item.foodname %> &nbsp;&nbsp; <%= item.foodquantity %></li>
+                            <% } else { %>
+                                <li class="list-group-item green"><%= item.foodname %> &nbsp;&nbsp; <%= item.foodquantity %></li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                    <div class="boddy">
+                        <button id="placeorder" class="show-order-btn btn btn-primary btn-decor" data-order-id="<%= order._id %>">Edit order</button>
+                        <button id="placeorder" class="btn btn-primary" onclick="window.location.href='/hotel/payment/bill/<%= order._id %>'">Create Bill</button>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+<% } else { %>
+    <h2>Currently There is no any orders</h2>
+<% } %>
+
+<script src="/js/showorder.js"></script>

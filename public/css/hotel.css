@@ -1,3 +1,63 @@
+/* Pop up and home page */
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+}
+.popup{
+    display: none;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .10);
+    border: 1px solid #e7eeec;
+    text-align: center;
+    position: relative;
+    background:transparent;
+    backdrop-filter: blur(6px);
+    color: white;
+    height: 119px;
+    width: 280px;
+    margin: 0px auto;
+    top: -285px ;
+    animation: popup;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+}
+@keyframes popup{
+    from{top: -460px;}
+    to{top:-285px}
+
+}
+
+/* Alert Animation */
+.myalert{
+    display: block;
+    animation-name: example;
+    animation-duration: 3s;
+    animation-timing-function:ease-out;
+}
+.alertcolor{
+    background-color: #abff4f !important;
+}
+.alertcolo{
+    background-color: #ff5c8a !important;
+}
+
+@keyframes example {
+    0%   {top:-80px;}
+    25%  {top:0px;}
+    50%  {top:0px;}
+    100%  {top:-80px;}
+}
+
+
 /* Services */
 .services-cards{
 
@@ -14,4 +74,31 @@
 }
 .textdec{
     text-decoration: none !important;
+}
+/* Footer Styling */
+footer {
+    background-color: aliceblue;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.f-info {
+    padding: 10px;
+}
+
+.socials {
+    margin: 8px 0;
+}
+
+.socials i {
+    font-size: 17px;
+    margin-right: 12px;
+}
+
+.f-con a {
+    text-decoration: none;
+    color: #222222;
 }

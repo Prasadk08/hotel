@@ -1,0 +1,152 @@
+<% layout('/layout/boilerplate2') -%>
+
+<style>
+    body {
+      background-color: #fcf6bd;
+  }
+  
+  .main-title {
+      list-style: none !important;
+      background-color: #ff9500 !important;
+      color: black !important;
+      height: 42px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      font-size: 1.3rem !important;
+      font-weight: bolder !important;
+      border-radius: 4px !important;
+  }
+  
+  .list {
+      background-color: #f5cb5c !important;
+      list-style: none !important;
+      display: flex !important;
+      justify-content: space-between; /* Adjusted for spacing */
+      border-bottom: 2px solid white !important;
+      align-items: center !important;
+      height: 50px !important;
+      font-size: 1.1rem !important;
+      color: black !important;
+      font-weight: bold !important;
+      padding: 0 15px; /* Added padding for spacing */
+      box-sizing: border-box; /* Ensures padding is included in element width/height */
+  }
+  
+  .counter-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ef233c;
+      border-radius: 20px;
+      padding: 5px 10px;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 90px;
+      height: 30px;
+  }
+  
+  .counter-container button {
+      background-color: #ef233c; /* Red color for buttons */
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s ease;
+  }
+  
+  
+  .counter-container input {
+      border: none;
+      width: 23px;
+      text-align: center;
+      font-size: 1.2rem;
+      background-color: #ef233c;
+      color: white;
+      padding: 0px;
+      margin: 0 5px;
+      height: inherit;
+
+  }
+
+  .add-btn {
+      background-color: rgb(227, 55, 69);/* Orange color for the Add button */
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s ease;
+  }
+  .btn-decor{
+      margin: 10px 10px;
+      background-color: #fe424d !important;
+      color: white!important;
+      border: none!important;
+  }
+  .cancel-button {
+    margin-right: 18px;
+    padding: 3px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    }
+
+    .cancel-button:hover {
+        background-color: #cc0000;
+    }
+    .red{
+        background-color:#ffd6e0 !important;
+        color: red !important;
+    }
+    .green{
+        background-color:#affc41 !important;
+        color: black !important;
+    }
+</style>
+
+<ul id="order-list">
+    <% if(order && order.orderedfood.length>=1) {%>
+<% for(ordere of order.orderedfood){ %>
+
+<ol class="list-group list-group-numbered mt-3">
+    <li class="list-group-item d-flex justify-content-between align-items-start okay" data-orderid="<%= order.id %>" data-foodid="<%= ordere.id %>" data-foodname="<%= ordere.foodname %>" data-quantity="<%= ordere.quantity%>">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold"><%= ordere.foodname %></div>
+      </div>
+        
+        <button class="cancel-button">Cancel</button>
+
+      <div class="counter-container" style="display: flex;">
+
+        <button class="minus-btn">-</button>
+
+        <input type="text" class="counter-input" value="<%= ordere.quantity %>" readonly />
+
+    </div>
+    </li>
+  </ol>
+<% } %>
+<% } %>
+</ul>
+
+
+<% if (order) { %>
+    <script>
+      window.currentOrders = <%- JSON.stringify(order).replace(/</g, '\\u003c') %>;
+    </script>
+  <% } %>
+<script src="/js/editorder.js"></script>

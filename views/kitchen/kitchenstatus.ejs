@@ -1,51 +1,77 @@
 <% layout('/layout/boilerplate2') -%>
-
 <style>
     body {
         background-color: #fcf6bd;
+        font-family: 'Arial', sans-serif;
     }
-    .main-title {
-        list-style: none !important;
-        background-color: #ff9500!important;
-        color: black!important;
-        height: 42px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        font-size: 1.3rem !important;
-        font-weight: bolder !important;
-        border-radius: 2px !important;
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.3s ease;
     }
-    .list {
-        background-color: #f5cb5c !important;
-        list-style: none !important;
-        display: flex !important;
-        justify-content: space-evenly; /* Adjusted for spacing */
-        border-bottom: 2px solid white !important;
-        align-items: center !important;
-        height: 40px !important;
-        font-size: 1.1rem !important;
-        color: black!important;
-        font-weight: bold !important;
-        padding: 0 10px; /* Added padding for spacing */
-        box-sizing: border-box; /* Ensures padding is included in element width/height */
+    .btn {
+        background-color: #ffb703;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #fb8500;
+    }
+
+    h5{
+        text-align: center;
+        color: #6b705c;
+    }
+    .red{
+        background-color:#ffd6e0 !important;
+        color: red !important;
+    }
+    .green{
+        background-color:#affc41 !important;
+        color: black !important;
     }
 </style>
 
-<div class="row">
-    <div class="col-6"><h1>Current orders</h1></div>
-</div>
+<% if (orders.length > 0) { %>
+    <div class="row offset-2">
+        <% for (order of orders) { %>
+            <div class="carrrd col-5 mt-3">
+                <h5><div class="tableno">Table <%= order.tableno %></div></h5>
+                <ul class="list-group list-group-flush">
+                    <% for (item of order.orderedfood) { %>
+                        <!-- Adding the red class to each list item by default -->
+                        <% if(!item.deliverstatus){ %>
+                            <li class="list-group-item red" data-foodid="<%= item.id %>" data-orderid="<%= order._id %>" data-addat="<%= item.addat%>" data-quantity="<%= item.quantity%>">
+                                <span><%= item.foodname.toUpperCase() %></span>
+                                <button class="btn" onclick="markasDeliver(event)">Mark As Deliver</button>
+                                <span><%= item.quantity %></span>
+                            </li>
+                        <% }else{%>
+                            <li class="list-group-item green" data-foodid="<%= item.id %>" data-orderid="<%= order._id %>">
+                                <span><%= item.foodname.toUpperCase() %></span>
+                                <span style="color: #6b705c;">Delivered</span>
+                                <span><%= item.quantity %></span>
+                            </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </div>
+        <% } %>
+    </div>
+<% } else { %>
+    <h2>Currently, there are no orders</h2>
+<% } %>
 
-<div class="row">
-    <% for(data of foodCategory){ %>
-        <ul class="list-group col">
-            <li class="list-group-item main-title active" aria-current="true"><%= data.toUpperCase() %></li>
-                <% for(item of sortedObjects[data]){ %>
-                    <li class="list">
-                        <span><%= item.foodname.toUpperCase() %></span>
-                        <span>&#x2715;<%= item.foodquantity %></span>
-                    </li>
-                <% } %>
-        </ul>
-    <% } %>
-</div>
+
+
+<script src="/js/editorderkitchen.js"></script>
+

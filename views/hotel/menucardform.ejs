@@ -1,31 +1,80 @@
 <% layout('/layout/boilerplate2') -%>
+<style>
+  /* Form Styling */
+.container {
+  max-width: 100%;
+}
 
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>Adding Menu card</h1>
-        <form method="POST" action="/kitchen/addmenucard" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded">
+h1 {
+  font-weight: bold;
+  color: #34495e;
+}
 
-            <select name="menu[item]" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>Select Collection Type</option>
-                <option  value="starters">Starters</option>
-                <option  value="soups">Soups</option>
-                <option  value="maincourse">Main Course</option>
-                <option  value="breads">Breads</option>
-                <option  value="riceandbiryani">Rice and Biryani</option>
-                <option  value="chinese">Chinese</option>
-            </select>
-          <div class="mb-2">
-            <label for="title" class="form-label">Enter Food Name</label>
-            <input type="text" name="menu[foodname]" class="form-control" placeholder="Enter Food Name" required>
-            <div class="invalid-feedback">Enter Food Name</div>
-          </div>
-          <div class="mb-2">
-            <label for="title" class="form-label">Enter Food Price</label>
-            <input type="number" name="menu[foodprice]" class="form-control" placeholder="Enter Food Price" required>
-            <div class="invalid-feedback"></div>
-          </div>
-          <br>
-          <button class="btn btn-primary btn-decor">Submit</button>
-        </form>
-      </div>
+.form-control,
+.form-select {
+  font-size: 1rem;
+  padding: 0.75rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.needs-validation {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-decor {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.btn-decor:hover {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">Add Menu Item</h1>
+      <form method="POST" action="/kitchen/addmenucard" novalidate class="needs-validation p-4 shadow-lg rounded-3 bg-light" enctype="application/x-www-form-urlencoded">
+        
+        <div class="mb-3">
+          <label for="collection-type" class="form-label">Select Collection Type</label>
+          <select name="menu[item]" id="collection-type" class="form-select form-select-lg" aria-label="Large select example" required>
+            <option selected disabled>Select Collection Type</option>
+            <option value="starters">Starters</option>
+            <option value="soups">Soups</option>
+            <option value="maincourse">Main Course</option>
+            <option value="breads">Breads</option>
+            <option value="riceandbiryani">Rice and Biryani</option>
+            <option value="chinese">Chinese</option>
+          </select>
+          <div class="invalid-feedback">Please select a collection type</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="food-name" class="form-label">Enter Food Name</label>
+          <input type="text" name="menu[foodname]" id="food-name" class="form-control" placeholder="Enter Food Name" required>
+          <div class="invalid-feedback">Please enter a food name</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="food-price" class="form-label">Enter Food Price</label>
+          <input type="number" name="menu[foodprice]" id="food-price" class="form-control" placeholder="Enter Food Price" required>
+          <div class="invalid-feedback">Please enter a valid price</div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg px-5 mt-3">Submit</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
