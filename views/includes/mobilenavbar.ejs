@@ -53,19 +53,19 @@
 <% if(currentpage.slice(0, -2)!="/waiter/takeorder"){ %>
 <nav class="mobilescrnav">
     <ul>
-      <li><a href="/hotel/home"><img src="/hotelphotos/home_12319480.png" alt="">Home</a></li>
-      <li><a href="/hotel/services"><img src="/hotelphotos/cutlery_9418662.png" alt="">Services</a></li>
-      <li><a href="/waiter/placeorder"><img src="/hotelphotos/tablet_395064.png" alt="">Take Order</a></li>
-      <li><a href="/kitchen/myservings"><img src="/hotelphotos/food-cart_9418688.png" alt="">MyServings</a></li>
+      <li><a href="/hotel/home"><img src="/hotelphotos/home_12319480.jpeg" alt="">Home</a></li>
+      <li><a href="/hotel/services"><img src="/hotelphotos/cutlery_9418662.jpeg" alt="">Services</a></li>
+      <li><a href="/waiter/placeorder"><img src="/hotelphotos/tablet_395064.jpeg" alt="">Take Order</a></li>
+      <li><a href="/kitchen/myservings"><img src="/hotelphotos/food-cart_9418688.jpeg" alt="">MyServings</a></li>
     </ul>
 </nav>
 <% }else{ %>
   <nav class="mobilescrnav secondnavmn">
     <ul>
-      <li onclick="showmenu()"><a><img src="/hotelphotos/add-task_17862874.png" alt="">AddItems</a></li>
+      <li onclick="showmenu()"><a><img src="/hotelphotos/add-task_17862874.jpeg" alt="">AddItems</a></li>
       <% if(order){ %>
-      <li class="show-order-btn" data-order-id="<%= order._id %>"><a><img src="/hotelphotos/email_7178171.png" alt="">EditOrder</a></li>
-      <li><a href="/hotel/payment/bill/<%= order._id %>"><img src="/hotelphotos/electrician-service_2823956.png" alt="">CreateBill</a></li>
+      <li class="show-order-btn" data-order-id="<%= order._id %>"><a><img src="/hotelphotos/email_7178171.jpeg" alt="">EditOrder</a></li>
+      <li><a href="/hotel/payment/bill/<%= order._id %>"><img src="/hotelphotos/electrician-service_2823956.jpeg" alt="">CreateBill</a></li>
       <% } %>
     </ul>
 </nav>
