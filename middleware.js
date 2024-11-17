@@ -1,5 +1,5 @@
-const Manager = require("./models/manager")
-const Waiter = require("./models/waiter")
+const User = require("./models/user")
+
 const expressError = require("./utils/expressError")
 const {waiterSchema,hotelSchema} = require("./schema")
 
@@ -15,7 +15,22 @@ module.exports.isLoggedIn=(req,res,next)=>{
 
 module.exports.uniqueUsername=async(req,res,next)=>{
         let {username}=req.body
-        let manager = await Manager.findOne({username})
+        let manager = await User.findOne({username})
+
+        if(manager){
+            console.log("i am testing")
+            req.flash("error","Username not available")
+            res.redirect("/signup")
+            // next(new expressError(400,"Username not available"))
+        }else{
+            next()
+        }
+
+}
+module.exports.uniqueUsername2=async(req,res,next)=>{
+        let {username}=req.body.waiter
+        let manager = await User.findOne({username})
+
         if(manager){
             console.log("i am testing")
             req.flash("error","Username not available")

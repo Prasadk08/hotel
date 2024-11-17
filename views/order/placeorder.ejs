@@ -1,5 +1,9 @@
 <% layout('/layout/boilerplate2') -%>
 <style>
+    .section {
+    position: relative;
+    z-index: 1;
+}
     .section-title {
         font-weight: bold;
         font-size: 24px;
@@ -75,7 +79,6 @@
     }
 </style>
 
-<div class="container">
     <% sections.forEach(function(section) { %>
         <div class="section">
             <h3 class="section-title"><%= section.name %></h3>
@@ -88,4 +91,4 @@
             </div>
         </div>
     <% }); %>
-</div>
+

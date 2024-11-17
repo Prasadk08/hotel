@@ -2,8 +2,7 @@
 <style>
   /* Basic reset */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #caf0f8;
     margin: 0;
     padding: 0;
     color: #333;
@@ -15,8 +14,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Header message styling */
@@ -43,6 +41,9 @@ h2 {
     border-radius: 6px;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.fw-bold{
+    color: #f72585 !important;
 }
 
 .list-group-item:hover {
@@ -84,7 +85,7 @@ a:hover {
     <% for(order of orders) { %>
         <a href="/waiter/showorder/<%= order.tableno %>">
             <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
+              <div class="col-12 col-md-4ms-2 me-auto">
                 <div class="fw-bold">TABALE NO. <%= order.tableno %></div>
               </div>
               <span class="badge text-bg-primary rounded-pill"><%= order.tableno %></span>

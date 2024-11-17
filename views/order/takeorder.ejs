@@ -26,8 +26,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10px; /* Spacing inside each food item */
-    background-color: white; /* White background for each item */
+    padding: 0px 10px; /* Spacing inside each food item */
+    background-color: #faf0ca !important; /* White background for each item */
+    color: #0d3b66 !important;
     border: 1px solid #ddd; /* Light border */
     border-radius: 5px; /* Rounded corners */
     margin-bottom: 10px; /* Space between items */
@@ -111,6 +112,9 @@
     margin-top: 20px; /* Space from the top */
     transition: background-color 0.3s ease;
 }
+.list-group-item{
+    border: none !important;
+}
 
 /* Hover effect for Place Order button */
 #placeorder:hover {
@@ -183,11 +187,23 @@
     cursor: pointer; /* Pointer on hover */
     transition: background-color 0.3s ease;
 }
+.quantity{
+    font-size: 20px;
+    margin: 0 16px 0 0;
+}
 
 /* Hover effect for Create Bill button */
 .create-bill-btn:hover {
     background-color: #218838; /* Darker green on hover */
 }
+@media only screen and (max-width: 431px) {
+    .laptoptakbtn{
+      display: none;
+    }
+    ol{
+        margin-left: -23px;
+    }
+  }
 
 
 </style>
@@ -195,28 +211,29 @@
 
 <ul id="order-list">
     <% if(order) {%>
+        <% let count=1 %>
+        <ol class="list-group list-group-item">
     <% for(ordere of order.orderedfood){ %>
-    <ol class="list-group list-group-numbered mt-3">
-        <li class="list-group-item d-flex justify-content-between align-items-start okay" data-foodid="<%= ordere.id %>" data-foodprice="<%= ordere.foodprice %>" data-foodname="<%= ordere.foodname %>" data-deliverstatus="<%= ordere.deliverstatus %>">
+    <li class="list-group-item  justify-content-between  okay list" data-foodid="<%= ordere.id %>" data-foodprice="<%= ordere.foodprice %>" data-foodname="<%= ordere.foodname %>" data-deliverstatus="<%= ordere.deliverstatus %>">
+            <%= count++ %>
           <div class="ms-2 me-auto">
             <div class="fw-bold"><%= ordere.foodname %></div>
           </div>
-            <button class="cancel-button">Cancel</button>
             <div class="quantity">
                 <p><%= ordere.quantity %></p>
             </div>
-        </li>
-      </ol>
+    </li>
     <% } %>
+    </ol>
     <% }else{ %>
         <h2>Currently there is no any orders</h2>
     <% } %>
 </ul>
 
-<button onclick="showmenu()" class="add-items-btn">Add items</button>
+<button onclick="showmenu()" class="add-items-btn laptoptakbtn">Add items</button>
 <% if(order){ %>
-    <button id="placeorder" class="show-order-btn btn  edit-order-btn" data-order-id="<%= order._id %>">Edit order</button>
-<a href="/hotel/payment/bill/<%= order._id %>"><button id="placeorder" class="btn btn-primary create-bill-btn">Create Bill</button></a>
+    <button id="placeorder" class="show-order-btn btn  edit-order-btn laptoptakbtn" data-order-id="<%= order._id %>">Edit order</button>
+<a href="/hotel/payment/bill/<%= order._id %>"><button id="placeorder" class="btn btn-primary create-bill-btn laptoptakbtn">Create Bill</button></a>
 <% } %>
   <div class="menucard" style="display: none;">
   <% for (data of foodCategory) { %>

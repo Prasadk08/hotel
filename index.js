@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const localStrategy = require('passport-local')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
@@ -20,9 +20,11 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 
+let mongoUrl = process.env.Atlas_Dburl
+
 async function main() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/hotel');
+    await mongoose.connect(mongoUrl);
     console.log("Connection is successful");
   } catch (err) {
     console.log("Cannot connect to database", err);
@@ -42,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const store = MongoStore.create({
-  mongoUrl: "mongodb://127.0.0.1:27017/hotel",
+  mongoUrl: mongoUrl,
   crypto: {
     secret: process.env.SECRET,
   },
@@ -65,29 +67,24 @@ const sessionOptions = {
   },
 };
 
-app.use(session(sessionOptions));
+app.use(session(sessionOptions))
+app.use(flash())
 
-passport.use('user-local', new LocalStrategy(User.authenticate()));
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new localStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await Manager.findById(id) || await Waiter.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
 app.use(async (req, res, next) => {
+  res.locals.currentpage=req.originalUrl;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;

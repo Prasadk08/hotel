@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const {Schema}=mongoose
-const Waiter= require('./waiter')
+
 const MenuCard = require('./menucard.js')
 const { date } = require('joi')
 
@@ -15,8 +15,9 @@ const hotelSchema = new Schema({
         type:Number
     },
     waiters:[{
+        
         type:mongoose.Schema.ObjectId,
-        ref:"Waiter"
+        ref:"User",
     }],
     menucard:{
         type:mongoose.Schema.ObjectId,

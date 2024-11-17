@@ -1,0 +1,158 @@
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel img {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  object-fit: cover; /* Ensures images fully cover the area */
+  z-index: -1; /* Positions the image behind overlay text */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7); /* Enhanced shadow for readability */
+  z-index: 1; /* Ensures overlay text is above carousel images */
+  text-align: center;
+}
+
+.carousel-caption h1 {
+  font-size: 4rem; /* Adjust for better visibility */
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.carousel-caption p {
+  font-size: 1.8rem;
+}
+
+/* Additional Styling to Ensure Layout Completeness */
+.container {
+  padding: 0;
+  margin-bottom: 80px;
+  max-width: 100%; /* Ensure container doesn't interfere with full width */
+}
+@media only screen and (max-width: 431px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel img {
+    height: 32vh;
+  }
+  .carousel-caption h1 {
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+  }
+  .carousel-caption p {
+    font-size: 0.8rem;
+  }
+}
+table {
+  width: 75%;
+
+  margin-top: 20px;
+}
+th,
+td {
+    font-weight: 500;
+  padding: 10px;
+  text-align: left;
+
+}
+th {
+  background-color: #f2f2f2;
+}
+.mobilescrnav{
+    display: none;
+
+}
+
+.tophomebar{
+    display: none;
+}
+
+
+.table-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .styled-table {
+    width: 75%;
+    margin: 20px auto;
+    background-color: #fed700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .styled-table thead tr {
+    
+    background-color: #4CAF50;
+    color: black;
+    text-align: left;
+  }
+  
+  .styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
+  
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .status-available {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .status-serving {
+    color: #dc3545;
+    font-weight: bold;
+  }
+  
+  .no-waiters {
+    font-size: 20px;
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+  }
+
+
+@media only screen and (max-width: 431px) {
+    body{
+      margin: 0;
+      padding: 0;
+        max-width: 430px;
+        min-height: 932px;
+    }
+    .tophomebar{
+      display: flex;
+      justify-content: space-between;
+    }
+    .tophomebar a img{
+      margin: 5px 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .hotelnm{
+        display: block;
+        background-color: #ebf2fa !important;
+        font-size: 25px;
+        padding: 0 11px;
+        color: #fe218b !important;
+        height: 42px;
+    }
+
+
+}

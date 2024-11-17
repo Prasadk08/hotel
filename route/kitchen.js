@@ -2,22 +2,21 @@ const express = require('express')
 const router = express.Router({mergeParams:true})
 const Hotel = require('../models/hotel')
 const MenuCard = require('../models/menucard')
-const Manager = require('../models/manager')
 const menucard = require('../models/menucard')
-const Waiter = require('../models/waiter')
 
+const User = require("../models/user");
 
 
 router.get("/addmenucardform",async(req,res)=>{
     let {username}=req.user
-    let newhoteldetail = await Manager.findOne({username}).populate("hotelid")
+    let newhoteldetail = await User.findOne({username}).populate("hotelid")
     newhoteldetail =newhoteldetail.hotelid
     res.render("hotel/menucardform.ejs",{newhoteldetail})
 })
 
 router.post("/addmenucard",async(req,res)=>{
     let {username}=req.user
-    const manager = await Manager.findByUsername(username).populate({
+    const manager = await User.findByUsername(username).populate({
         path: 'hotelid',
         populate: {
             path: 'menucard'
@@ -39,10 +38,10 @@ router.post("/addmenucard",async(req,res)=>{
 
 router.get("/showmenucard",async(req,res)=>{
     let {username}=req.user
-    let newhoteldetail = await Manager.findOne({username}).populate("hotelid")
+    let newhoteldetail = await User.findOne({username}).populate("hotelid")
     newhoteldetail =newhoteldetail.hotelid
 
-    const manager = await Manager.findByUsername(username).populate({
+    const manager = await User.findByUsername(username).populate({
         path: 'hotelid',
         populate: {
             path: 'menucard'
@@ -61,21 +60,19 @@ router.get("/myservings",async(req,res)=>{
         return res.redirect("/hotel/home")
     }
 
-    let {username}=req.user
-    let orders,newhoteldetail
-    
-    newhoteldetail = await Waiter.findById(req.user.id)
-    orders= newhoteldetail.myservings
+    let waiter = await User.findById(req.user.id)
+
+    let orders= waiter.myservings
 
     res.render("kitchen/myservings.ejs",{orders})
-})  
+})
 
 
 router.get("/currentorders",async(req,res)=>{
 
     let {username}=req.user
     let orders,newhoteldetail
-    
+
     newhoteldetail = await Hotel.findById(req.user.hotelid)
     orders= newhoteldetail.orders
 
@@ -102,13 +99,6 @@ router.post("/cancelorder",async(req,res)=>{
 
     res.redirect(`/waiter/editorder/${order._id}`);
 
-})
-
-
-
-router.get("/test",(req,res)=>{
-
-    res.send("success")
 })
 
 

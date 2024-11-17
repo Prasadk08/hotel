@@ -4,6 +4,9 @@ const passportlocalmongoose=require('passport-local-mongoose')
 
 const userSchema = new Schema({
 
+    name:{
+        type:String
+    },
     email:{
         type:String
     },
@@ -13,8 +16,17 @@ const userSchema = new Schema({
     },
     role: {
         type: String
-    }
+    },
+    myservings: [{
+        cancelleditems:{
+            type:[String]
+        },
+        tableno: {
+            type: Number
+        },
+        serving: [{}]
+    }]
 })
 
 userSchema.plugin(passportlocalmongoose)
-module.exports= mongoose.model("user",userSchema)
+module.exports= mongoose.model("User",userSchema)

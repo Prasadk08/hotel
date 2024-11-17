@@ -1,92 +1,11 @@
 <% layout('/layout/boilerplate2') -%>
-<style>
-  .carousel, .carousel-inner, .carousel-item, .carousel img {
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    object-fit: cover; /* Ensures images fully cover the area */
-    z-index: -1; /* Positions the image behind overlay text */
-  }
-  
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7); /* Enhanced shadow for readability */
-    z-index: 1; /* Ensures overlay text is above carousel images */
-    text-align: center;
-  }
-  
-  .carousel-caption h1 {
-    font-size: 4rem; /* Adjust for better visibility */
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .carousel-caption p {
-    font-size: 1.8rem;
-  }
+<link rel="stylesheet" href="/css/home.css">
+<div class="tophomebar">
+  <div class="hotelnm">Hotel <%= testhotelname %></div>
+  <a href="/hotel/profile"><img src="/hotelphotos/menu_7787466.png" alt=""></a>
+</div>
 
-  /* Additional Styling to Ensure Layout Completeness */
-  .container {
-    padding-top: 0;
-    padding-left: 0;
-    max-width: 100%; /* Ensure container doesn't interfere with full width */
-  }
-  @media only screen and (max-width:431px) {
-    .carousel, .carousel-inner, .carousel-item, .carousel img{
-      height: 32vh;
-    }
-    .carousel-caption h1 {
-    font-size: 27px;
-    font-weight: bold;
-    margin-bottom: 0.8rem;
-  }
-  .carousel-caption p {
-    font-size: 0.8rem;
-}
-}
-/* Box Container for Information */
-.info-boxes {
-  text-align: center;
-    display: flex;
-    justify-content: space-between;
-    gap: 100px;
-    padding: 40px;
-    background-color: #f8f9fa;
-  }
 
-  .info-box {
-    flex: 1;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 360px;
-  }
-
-  .info-box h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  .info-box p {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1rem;
-    color: #666;
-  }
-
-</style>
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -114,21 +33,32 @@
 </div>
 
 
-<!-- Information Boxes Section -->
-<div class="info-boxes">
-  <div class="info-box">
-    <i class="fa-brands fa-uncharted"></i>
-    <h2>About Our System</h2>
-    <p>Our restaurant management platform is designed for restaurant owners, providing a complete solution to manage orders and table services without any cost. Enhance efficiency and focus on quality service with our user-friendly system.</p>
-  </div>
-  <div class="info-box">
-    <i class="fa-solid fa-snowflake"></i>
-    <h2>How It Works</h2>
-    <p>Waiters take orders based on table numbers, and orders are then assigned randomly to waiters to ensure even distribution. Each waiter has access to view their assigned orders directly through their dedicated login route.</p>
-  </div>
-  <div class="info-box">
-    <i class="fa-solid fa-heart"></i>
-    <h2>Get Started for Free</h2>
-    <p>Restaurant owners can create their account and set up their menu and staff information effortlessly. Enjoy a seamless order management experience that keeps your staff organized and your customers satisfied.</p>
-  </div>
-</div>
+<h2 class="table-title">Waiter Status</h2>
+<% if(allwaiterdata.length>0) {%>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Waiter Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let count=1 %>
+            <% for(let data of allwaiterdata){ %>
+                <tr>
+                    <td><%= count++ %></td>
+                    <td><%= data.name %></td>
+                    <% if(data.myservings.length==0) {%>
+                        <td class="status-available">Available</td>
+                    <% }else{ %>
+                        <td class="status-serving">Serving</td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+<% }else{ %>
+    <h2 class="no-waiters">Please add some waiters first</h2>
+<% } %>
+

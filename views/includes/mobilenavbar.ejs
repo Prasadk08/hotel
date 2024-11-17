@@ -1,0 +1,74 @@
+<style>
+    .mobilescrnav{
+        display: none;
+    }
+    .mobilescrnav ul li img{
+    padding: 0 0 0 0;
+    height: 32px;
+    width: 32px;
+}
+
+@media only screen and (max-width: 431px) {
+    body{
+        max-width: 430px;
+        min-height: 932px;
+    }
+    .mobilescrnav{
+        position: fixed;
+        display: block;
+        bottom: 0;
+        left: 0;
+        border: 1px solid black;
+        height: 80px;
+        width: 100%;
+        text-align: center;
+        background-color: aliceblue;
+        z-index: 1000;
+    }
+    .mobilescrnav ul{
+      list-style: none;
+        padding: 8px 0px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .secondnavmn ul{
+      padding: 8px 20px;
+    }
+    .mobilescrnav ul li a{
+        text-decoration: none;
+        list-style: none;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        list-style: none;
+        padding: 5px 10px;
+        justify-content: space-between;
+        color: black;
+    }
+  }
+
+</style>
+<% if(currentpage.slice(0, -2)!="/waiter/takeorder"){ %>
+<nav class="mobilescrnav">
+    <ul>
+      <li><a href="/hotel/home"><img src="/hotelphotos/home_12319480.png" alt="">Home</a></li>
+      <li><a href="/hotel/services"><img src="/hotelphotos/cutlery_9418662.png" alt="">Services</a></li>
+      <li><a href="/waiter/placeorder"><img src="/hotelphotos/tablet_395064.png" alt="">Take Order</a></li>
+      <li><a href="/kitchen/myservings"><img src="/hotelphotos/food-cart_9418688.png" alt="">MyServings</a></li>
+    </ul>
+</nav>
+<% }else{ %>
+  <nav class="mobilescrnav secondnavmn">
+    <ul>
+      <li onclick="showmenu()"><a><img src="/hotelphotos/add-task_17862874.png" alt="">AddItems</a></li>
+      <% if(order){ %>
+      <li class="show-order-btn" data-order-id="<%= order._id %>"><a><img src="/hotelphotos/email_7178171.png" alt="">EditOrder</a></li>
+      <li><a href="/hotel/payment/bill/<%= order._id %>"><img src="/hotelphotos/electrician-service_2823956.png" alt="">CreateBill</a></li>
+      <% } %>
+    </ul>
+</nav>
+<% } %>
+
+

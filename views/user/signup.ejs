@@ -1,44 +1,43 @@
 <% layout('/layout/boilerplate') -%>
+<link rel="stylesheet" href="/css/signup.css">
 
-<div class="row">
-  <div class="col-6 offset-3">
-    <h1>Sign-Up</h1>
-    <form method="POST" action="/signup" novalidate class="needs-validation">
-      <div class="mb-3">
-        <label for="username" class="form-label">Enter email</label>
-        <input
-          type="email"
-          name="email"
-          class="form-control"
-          placeholder="Enter manager email"
-          required
-        />
-        <div class="invalid-feedback">Please Enter email</div>
-      </div>
-      <div class="mb-3">
-        <label for="username" class="form-label">Enter Username</label>
-        <input
-          type="text"
-          name="username"
-          class="form-control"
-          placeholder="Enter Username"
-          required
-        />
-        <div class="invalid-feedback">Please Enter Username</div>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Enter Password</label>
-        <input
-          type="password"
-          name="password"
-          class="form-control"
-          placeholder="Enter Password "
-          required
-        />
-        <div class="invalid-feedback">Please Enter Password</div>
-      </div>
-      <br />
-      <button class="btn btn-primary btn-decor">Submit</button>
-    </form>
-  </div>
+<div class="signup-container">
+  <h1>Sign-Up</h1>
+  <form method="POST" action="/signup" novalidate class="needs-validation">
+    <div class="mb-3">
+      <label for="email" class="form-label">Enter Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Enter manager email"
+        required
+      />
+      <div class="invalid-feedback">Please Enter Email</div>
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Enter Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Enter Username"
+        required
+      />
+      <div class="invalid-feedback">Please Enter Username</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Enter Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Enter Password"
+        required
+      />
+      <div class="invalid-feedback">Please Enter Password</div>
+    </div>
+    <br />
+    <button class="btn btn-primary btn-decor">Submit</button>
+  </form>
 </div>

@@ -1,5 +1,5 @@
 const joi = require('joi')
-const manager = require('./models/manager')
+
 
 module.exports.hotelSchema= joi.object({
     manager:joi.object({
@@ -29,7 +29,7 @@ module.exports.waiterSchema= joi.object({
         phno:joi.number().min(10).required(),
         username: joi.string().required(),
         password: joi.string().required()
-    }).required()
+    }).required(),
 
 })
 

@@ -1,10 +1,8 @@
 const express = require('express')
-const Waiter = require('../models/waiter')
 const Hotel = require('../models/hotel')
-const Manager = require('../models/manager')
 const User = require('../models/user')
 const router = express.Router({mergeParams:true})
-const{isLoggedIn,validatewaiter}=require('../middleware')
+const{isLoggedIn,validatewaiter,uniqueUsername2}=require('../middleware')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;  // Import ObjectId from mongoose
 
@@ -22,13 +20,23 @@ router.get("/services",async(req,res)=>{
 router.get("/home",async(req,res)=>{
     let {username}= req.user
     let newhoteldetail = await User.findOne({username}).populate("hotelid")
+    
+
+    let allwaiterdata=[]
+    for(let waiter of newhoteldetail.hotelid.waiters){
+        allwaiterdata.push(await User.findById(waiter))
+    }
     newhoteldetail =newhoteldetail.hotelid
-    res.render("hotel/home.ejs",{newhoteldetail})
+
+    res.render("hotel/home.ejs",{newhoteldetail,allwaiterdata})
 })
 
-router.post("/home",(req,res)=>{
+router.get("/profile",async(req,res)=>{
+    let {username}= req.user
+    let newhoteldetail = await User.findOne({username}).populate("hotelid")
+    newhoteldetail =newhoteldetail.hotelid
 
-    res.render("hotel/home.ejs")
+    res.render("hotel/profile.ejs",{newhoteldetail})
 })
 
 router.get("/addwaiter",isLoggedIn,async(req,res)=>{
@@ -38,31 +46,26 @@ router.get("/addwaiter",isLoggedIn,async(req,res)=>{
     res.render("hotel/addwaiter.ejs",{newhoteldetail})
 })
 
-router.get("/addwaiter",(req,res)=>{
-    res.render("hotel/addwaiter.ejs")
-})
 
-router.post("/addwaiter",validatewaiter,async(req,res)=>{
-    let{name,phno,username,password}=req.body.waiter
+router.post("/addwaiter",uniqueUsername2,validatewaiter,async(req,res)=>{
+    let{name,username,phno,password}=req.body.waiter
 
-    let newwaiter = new Waiter({name,phno})
-    await Waiter.save(newwaiter);
-
-    let newuser = new User({username,role:'Waiter'})
+    let newuser = new User({name,username,role:'Waiter'})
     await User.register(newuser,password)
-    
+
 
     let {hotelid}=res.locals.currUser
     let hotelinfo = await Hotel.findById(hotelid)
 
-    newwaiter.hotelid=hotelinfo._id
+    newuser.hotelid=hotelinfo._id
+    newuser.myservings=[]
 
-    hotelinfo.waiters.push(newwaiter)
+    hotelinfo.waiters.push(newuser)
 
-    await newwaiter.save()
+    await newuser.save()
     await hotelinfo.save()
     req.flash("success","New waiter Added")
-    res.redirect("/home")
+    res.redirect("/hotel/home")
 })
 
 
@@ -85,10 +88,10 @@ router.get('/payment/bill/:orderId', async (req, res) => {
     }
 
     // Find the waiter associated with the order
-    const waiter = await Waiter.findById(order.waiterid);
+    const waiter = await User.findById(order.waiterid);
     if (waiter) {
         // Remove the serving from the waiter's myservings without causing VersionError
-        await Waiter.findOneAndUpdate(
+        await User.findOneAndUpdate(
             { _id: waiter._id }, 
             { $pull: { myservings: { tableno: order.tableno } } },
             { new: true }  // Ensure the latest version is used
@@ -128,14 +131,12 @@ router.get('/payment/bill/:orderId', async (req, res) => {
 
     const waitername = waiter ? waiter.name : 'Unknown Waiter';
 
-    // Remove the order from the hotel's orders array and ensure no VersionError
     await Hotel.findOneAndUpdate(
         { _id: hotel._id },
         { $pull: { orders: { _id: orderObjectId } } },
         { new: true }
     );
 
-    // Render the bill page with the calculated total and waiter name
     res.render("payment/bill.ejs", { order, totalBill, waitername });
 
 });

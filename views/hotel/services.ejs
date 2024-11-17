@@ -1,66 +1,9 @@
 <% layout('/layout/boilerplate2') -%>
-<style>
-  /* Services Section Styling */
-.container {
-  max-width: 100%;
-}
+<link rel="stylesheet" href="/css/services.css">
 
-h1 {
-  font-weight: bold;
-  color: #34495e;
-}
-
-.services-cards {
-  gap: 20px;
-}
-
-.card {
-  width: 18rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card-img {
-  font-size: 4rem;
-  padding: 20px 0;
-  color: inherit;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  color: #333;
-}
-
-.textdec {
-  text-decoration: none !important;
-  color: inherit;
-}
-
-/* Adding Colors to Icons */
-.showmenucard .service-card-img {
-  color: #3498db; /* Blue for menu card */
-}
-
-.addmenucard .service-card-img {
-  color: #2ecc71; /* Green for add menu card */
-}
-
-.currentstatus .service-card-img {
-  color: #e74c3c; /* Red for kitchen status */
-}
-
-</style>
-
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Our Services</h1>
+  <h1 class="text-center servcetitl">Our Services</h1>
   <div class="services-cards row justify-content-center text-center">
-    <a class="col-md-3 textdec" href="/kitchen/showmenucard">
+    <a class="col-md-3 textdec serboxes" href="/kitchen/showmenucard">
       <div class="card shadow-lg showmenucard">
         <i class="fa-solid fa-utensils service-card-img text-primary"></i>
         <div class="card-body">
@@ -68,21 +11,21 @@ h1 {
         </div>
       </div>
     </a>
-    <a class="col-md-3 textdec" href="/kitchen/addmenucardform">
+    <a class="col-md-3 textdec serboxes" href="/kitchen/addmenucardform">
       <div class="card shadow-lg addmenucard">
-        <i class="fa-solid fa-book-open service-card-img text-success"></i>
+        <i class="fa-solid fa-book-open service-card-img"></i>
         <div class="card-body">
           <h5 class="card-title">Add Menu Card</h5>
         </div>
       </div>
     </a>
-    <a class="col-md-3 textdec" href="/waiter/kitchenstatus">
+    <a class="col-md-3 textdec serboxes" href="/hotel/addwaiter">
       <div class="card shadow-lg currentstatus">
-        <i class="fa-solid fa-kitchen-set service-card-img text-danger"></i>
+        <img src="/hotelphotos/photo_11214277.png" alt="" height="56px" width="67.2px" style="margin: 20px auto;">
         <div class="card-body">
-          <h5 class="card-title">Current Kitchen Status</h5>
+          <h5 class="card-title">Add Waiter</h5>
         </div>
       </div>
     </a>
   </div>
-</div>
+

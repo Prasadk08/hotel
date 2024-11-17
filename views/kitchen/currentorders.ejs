@@ -61,22 +61,14 @@
 <% if(orders.length > 0) { %>
     <div class="row offset-1 marg">
         <% for(order of orders) { %>
-            <div class="col-4 mt-4">
+            <div class="col-12 col-md-4 mt-4">
                 <div class="ulback">
                     <h5 style="text-align: center;">Table <%= order.tableno %></h5>
                     <ul class="list-group list-group-flush">
                         <% for(item of order.orderedfood) { %>
-                            <% if(!item.deliverstatus) { %>
-                                <li class="list-group-item red"><%= item.foodname %> &nbsp;&nbsp; <%= item.foodquantity %></li>
-                            <% } else { %>
-                                <li class="list-group-item green"><%= item.foodname %> &nbsp;&nbsp; <%= item.foodquantity %></li>
-                            <% } %>
+                            <li class="list-group-item green"><%= item.foodname %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= item.quantity %></li>
                         <% } %>
                     </ul>
-                    <div class="boddy">
-                        <button id="placeorder" class="show-order-btn btn btn-primary btn-decor" data-order-id="<%= order._id %>">Edit order</button>
-                        <button id="placeorder" class="btn btn-primary" onclick="window.location.href='/hotel/payment/bill/<%= order._id %>'">Create Bill</button>
-                    </div>
                 </div>
             </div>
         <% } %>

@@ -1,4 +1,18 @@
 <% layout('/layout/boilerplate2') -%>
+<style>
+    body{
+        background-color: #caf0f8;
+    }
+    .fw-bold{
+    color: #f72585 !important;
+}
+@media only screen and (max-width: 431px) {
+    .list-group-item{
+      margin-right: 25px;
+  
+    }
+  }
+</style>
 <ul id="order-list">
     <% if(order) {%>
         
@@ -10,7 +24,7 @@
         <% for(ordere of order.serving){ %>
             <% for(orderee of ordere){ %>
                 <ol class="list-group list-group-numbered mt-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-start okay">
+                    <li class="list-group-item d-flex justify-content-between">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold"><%= orderee.foodname %></div>
                         </div>

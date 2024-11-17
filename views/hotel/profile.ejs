@@ -1,0 +1,78 @@
+<% layout('/layout/boilerplate2') -%>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5af19, #f12711);
+    color: #333;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 30px;
+  }
+
+  .details-container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .details-container h6 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  .details-container h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .logot {
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: transparent;
+    border: 2px solid #f12711;
+    color: #f12711;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .logot:hover {
+    background: #f12711;
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+
+<h1>User Details</h1>
+<div class="details-container">
+  <div>
+    <h6>Hotel Name</h6>
+    <h3><%= newhoteldetail.hotelname %></h3>
+  </div>
+  <div>
+    <h6>Owner Name</h6>
+    <h3><%= newhoteldetail.ownername %></h3>
+  </div>
+  <div>
+    <h6>Phone Number</h6>
+    <h3><%= newhoteldetail.phno %></h3>
+  </div>
+  <a class="logot" href="/logout">Logout</a>
+</div>

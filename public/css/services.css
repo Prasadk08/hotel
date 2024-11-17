@@ -1,0 +1,62 @@
+  /* Services Section Styling */
+
+  .servcetitl {
+    padding: 20px 0;
+    font-weight: bold;
+    color: #34495e;
+  }
+  
+  .services-cards {
+    gap: 20px;
+  }
+  
+  .card {
+    width: 18rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-card-img {
+    font-size: 4rem;
+    padding: 20px 0;
+    color: inherit;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    color: #333;
+  }
+  
+  .textdec {
+    text-decoration: none !important;
+    color: inherit;
+  }
+  
+  /* Adding Colors to Icons */
+  .showmenucard .service-card-img {
+    color: #3498db; /* Blue for menu card */
+  }
+  
+  .addmenucard .service-card-img {
+    color: #ff006e; /* Green for add menu card */
+  }
+  
+  .currentstatus .service-card-img {
+    color: #e74c3c; /* Red for kitchen status */
+  }
+  @media only screen and (max-width: 431px) {
+    .serboxes{
+        /* padding: 30px 0 !important; */
+
+        width: 80% !important;
+    }
+    .services-cards {
+      margin: 10px 24px;
+    }
+  }
