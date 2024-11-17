@@ -53,19 +53,19 @@
 <% if(currentpage.slice(0, -2)!="/waiter/takeorder"){ %>
 <nav class="mobilescrnav">
     <ul>
-      <li><a href="/hotel/home"><img src="/hotelphotos/home_12319480.jpg" alt="">Home</a></li>
-      <li><a href="/hotel/services"><img src="/hotelphotos/cutlery_9418662.jpg" alt="">Services</a></li>
-      <li><a href="/waiter/placeorder"><img src="/hotelphotos/tablet_395064.jpeg" alt="">Take Order</a></li>
-      <li><a href="/kitchen/myservings"><img src="/hotelphotos/food-cart_9418688.jpg" alt="">MyServings</a></li>
+      <li><a href="/hotel/home"><img src="/hotelphotos/bg-ebea4233-a28b-447e-a6d2-9001ebd81ef8.png" alt="">Home</a></li>
+      <li><a href="/hotel/services"><img src="/hotelphotos/bg-76f4c8d6-89e1-4465-a560-898e24ce6694.png" alt="">Services</a></li>
+      <li><a href="/waiter/placeorder"><img src="/hotelphotos/bg-1abcefb8-64e1-4a5d-8d47-8784b13a8ca9.png" alt="">Take Order</a></li>
+      <li><a href="/kitchen/myservings"><img src="/hotelphotos/bg-18a36030-174b-45cb-9ac5-33788d79889b.png" alt="">MyServings</a></li>
     </ul>
 </nav>
 <% }else{ %>
   <nav class="mobilescrnav secondnavmn">
     <ul>
-      <li onclick="showmenu()"><a><img src="/hotelphotos/add-task_17862874.jpg" alt="">AddItems</a></li>
+      <li onclick="showmenu()"><a><img src="/hotelphotos/bg-7143e9d1-7862-449d-9e9b-91716037d291.png" alt="">AddItems</a></li>
       <% if(order){ %>
-      <li class="show-order-btn" data-order-id="<%= order._id %>"><a><img src="/hotelphotos/email_7178171.jpg" alt="">EditOrder</a></li>
-      <li><a href="/hotel/payment/bill/<%= order._id %>"><img src="/hotelphotos/electrician-service_2823956.jpg" alt="">CreateBill</a></li>
+      <li class="show-order-btn" data-order-id="<%= order._id %>"><a><img src="/hotelphotos/bg-7a3b5007-48df-494d-873a-ad2f053625cc.png" alt="">EditOrder</a></li>
+      <li><a href="/hotel/payment/bill/<%= order._id %>"><img src="/hotelphotos/bg-9e75e68c-fe8b-43b3-8d16-4644bb9e2799.png" alt="">CreateBill</a></li>
       <% } %>
     </ul>
 </nav>
