@@ -11,7 +11,7 @@
   }
   
   .card {
-    width: 18rem;
+    width: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background-color: #f9f9f9;
     border-radius: 12px;
@@ -52,11 +52,6 @@
   }
   @media only screen and (max-width: 431px) {
     .serboxes{
-        /* padding: 30px 0 !important; */
-
         width: 80% !important;
-    }
-    .services-cards {
-      margin: 10px 24px;
     }
   }

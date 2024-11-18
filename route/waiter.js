@@ -134,6 +134,7 @@ router.post("/takeorder/:i", async (req, res) => {
   } else {
     firstwaiter = 0;
   }
+  req.flash("success","Order placed successfully")
 
   await hotel.save();
 
@@ -217,6 +218,7 @@ router.post("/editorder/:foodname/:foodquantity", async (req, res) => {
       { $pull: { orders: { _id: orderId } } }
     );
   }
+  req.flash("success","Order Edited Successfully")
 
   waiter.markModified("myservings");
 

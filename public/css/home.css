@@ -73,10 +73,12 @@ th {
 
 .tophomebar{
     display: none;
+    background-color: #ebf2fa;
 }
 
 
 .table-title {
+    margin-top: 20px;
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
@@ -139,6 +141,7 @@ th {
     .tophomebar{
       display: flex;
       justify-content: space-between;
+      background-color: #ebf2fa;
     }
     .tophomebar a img{
       margin: 5px 10px;

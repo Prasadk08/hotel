@@ -18,7 +18,7 @@ router.get("/login",(req,res)=>{
 router.post("/login",
     passport.authenticate("local", {
         failureRedirect: "/login",
-        failureFlash: false
+        failureFlash: true
     }),
     async (req, res) => {
 
@@ -40,7 +40,7 @@ router.post("/login",
         req.session.save((err) => {
             if (err) console.log('Session save error:', err);
         });
-        req.flash("success","Welcome to Services")
+        req.flash("success","Welcome to SwaadServe")
         res.render("hotel/home.ejs",{newhoteldetail,allwaiterdata});
     }
 );
