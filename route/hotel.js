@@ -10,6 +10,7 @@ const{hotelname} = require('../middleware')
 
 
 router.get("/services",async(req,res)=>{
+
     let {username}=req.user
     let newhoteldetail = await User.findOne({username}).populate("hotelid")
     newhoteldetail =newhoteldetail.hotelid
@@ -18,7 +19,11 @@ router.get("/services",async(req,res)=>{
 
 
 router.get("/home",async(req,res)=>{
-    let {username}= req.user
+    console.log(req.user)
+    let username;
+    if(req.user){
+        username= req.user.username
+    }
     let newhoteldetail = await User.findOne({username}).populate("hotelid")
     
 
@@ -32,7 +37,10 @@ router.get("/home",async(req,res)=>{
 })
 
 router.get("/profile",async(req,res)=>{
-    let {username}= req.user
+    let username;
+    if(req.user){
+        username= req.user.username
+    }
     let newhoteldetail = await User.findOne({username}).populate("hotelid")
     newhoteldetail =newhoteldetail.hotelid
 

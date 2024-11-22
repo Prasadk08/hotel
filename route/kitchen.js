@@ -97,6 +97,8 @@ router.post("/cancelorder",async(req,res)=>{
     newhoteldetail.orders=oldorders
     await newhoteldetail.save()
 
+    req.flash("success","Order Cancelled Successfully")
+
     res.redirect(`/waiter/editorder/${order._id}`);
 
 })

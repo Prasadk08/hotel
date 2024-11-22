@@ -1,4 +1,7 @@
   /* Services Section Styling */
+  body{
+    font-family: Arial, sans-serif;
+  }
 
   .servcetitl {
     padding: 20px 0;

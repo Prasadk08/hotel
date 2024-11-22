@@ -3,7 +3,6 @@ const router = express.Router({ mergeParams: true });
 const Hotel = require("../models/hotel");
 const MenuCard = require("../models/menucard");
 const User = require("../models/user");
-const menucard = require("../models/menucard");
 
 const mongoose = require("mongoose");
 const user = require("../models/user");
@@ -13,6 +12,13 @@ let allwaiters = [];
 let firstwaiter = 0;
 
 router.get("/placeorder", async (req, res) => {
+
+  if(req.user.role=="Waiter"){
+    req.flash("error","Only Manager can Take Order")
+    return res.redirect("/hotel/home")
+  }
+
+
   let { username } = req.user;
   let newhoteldetail = await Hotel.findById(req.user.hotelid).populate(
     "sections"
