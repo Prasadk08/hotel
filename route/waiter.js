@@ -81,8 +81,8 @@ router.get("/takeorder/:i", async (req, res) => {
 
   let order = hotel.orders.find((order) => Number(order.tableno) === Number(i));
 
-
   hotelmenucard = hotel.menucard;
+
   res.render("order/takeorder.ejs", { hotelmenucard, order, i });
 });
 

@@ -26,10 +26,23 @@
         background-color: #fdf0d5;
     }
     .total-amount {
+        margin-right: 21px;
         font-size: 18px;
         font-weight: bold;
         text-align: right;
     }
+    @media only screen and (max-width: 431px) {
+        .bill-container {
+        width: 80%;
+        margin: auto;
+        background-color: #fcf6bd;
+        padding: 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    
+  }
 </style>
 <div class="bill-container">
     <h2 style="text-align: center; "><i>Hotel <%= testhotelname %></i></h2>

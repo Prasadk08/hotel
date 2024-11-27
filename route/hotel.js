@@ -19,19 +19,17 @@ router.get("/services",async(req,res)=>{
 
 
 router.get("/home",async(req,res)=>{
-    console.log(req.user)
-    let username;
+
+    let username,newhoteldetail;
     if(req.user){
         username= req.user.username
+        newhoteldetail = await User.findOne({username}).populate("hotelid")
+        let allwaiterdata=[]
+        for(let waiter of newhoteldetail.hotelid.waiters){
+            allwaiterdata.push(await User.findById(waiter))
+        }
+        newhoteldetail =newhoteldetail.hotelid
     }
-    let newhoteldetail = await User.findOne({username}).populate("hotelid")
-    
-
-    let allwaiterdata=[]
-    for(let waiter of newhoteldetail.hotelid.waiters){
-        allwaiterdata.push(await User.findById(waiter))
-    }
-    newhoteldetail =newhoteldetail.hotelid
 
     res.render("hotel/home.ejs",{newhoteldetail,allwaiterdata})
 })

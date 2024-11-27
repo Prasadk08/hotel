@@ -33,6 +33,8 @@ router.post("/addmenucard",async(req,res)=>{
     await manager.hotelid.save()
     await manager.save()
 
+    req.flash("success","FoodItem is successfully Added")
+
     res.redirect("/hotel/services")
 })
 
