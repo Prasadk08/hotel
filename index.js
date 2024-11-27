@@ -20,8 +20,8 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 
-// let mongoUrl = process.env.Atlas_Dburl
-let mongoUrl = "mongodb://127.0.0.1:27017/hotel"
+let mongoUrl = process.env.Atlas_Dburl
+// let mongoUrl = "mongodb://127.0.0.1:27017/hotel"
 
 async function main() {
   try {
