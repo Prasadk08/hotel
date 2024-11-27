@@ -25,6 +25,7 @@ const hotelSchema = new Schema({
     },
     orders:[{
         tableno:Number,
+        section:String,
         waiterid:{
             type:mongoose.Schema.ObjectId,
             ref:"Waiter",

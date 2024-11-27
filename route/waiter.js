@@ -65,12 +65,12 @@ router.post("/placeorder", async (req, res) => {
   res.json({ success: true });
 });
 
-router.get("/takeorder/:i", async (req, res) => {
+router.get("/takeorder/:i/:section", async (req, res) => {
 
 
   let { username } = req.user;
 
-  let { i } = req.params;
+  let { i,section } = req.params;
 
   const manager = await User.findByUsername(username).populate("hotelid");
   const hotel = await Hotel.findById(manager.hotelid._id).populate("menucard").populate("waiters")
@@ -83,11 +83,13 @@ router.get("/takeorder/:i", async (req, res) => {
 
   hotelmenucard = hotel.menucard;
 
-  res.render("order/takeorder.ejs", { hotelmenucard, order, i });
+  res.render("order/takeorder.ejs", { hotelmenucard, order, i ,section});
 });
 
-router.post("/takeorder/:i", async (req, res) => {
+router.post("/takeorder/:i/:section", async (req, res) => {
+
   const { order, tableNumber } = req.body;
+  const {section} = req.params
 
   const { username } = req.user;
   const manager = await User.findByUsername(username).populate("hotelid");
@@ -125,6 +127,7 @@ router.post("/takeorder/:i", async (req, res) => {
   } else {
 
     hotel.orders.push({
+      section:section,
       tableno: tableNumber,
       orderedfood: order,
       waiterid: allwaiters[firstwaiter],
@@ -132,7 +135,7 @@ router.post("/takeorder/:i", async (req, res) => {
 
     const waiter = await User.findById(allwaiters[firstwaiter]);
 
-    waiter.myservings.push({ cancelleditems:[], tableno: tableNumber, serving: [order]});
+    waiter.myservings.push({ cancelleditems:[], tableno: tableNumber, serving: [order],section:section});
     await waiter.save()
   }
   if (firstwaiter < allwaiters.length - 1) {

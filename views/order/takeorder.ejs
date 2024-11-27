@@ -208,6 +208,7 @@
 
 </style>
 <input type="hidden" id="tableNumber" value="<%= i %>">
+<input type="hidden" id="section" value="<%= section %>">
 
 <ul id="order-list">
     <% if(order) {%>
@@ -316,9 +317,10 @@
     function placeOrderHandler() {
 
         let tableNumber = document.getElementById('tableNumber').value;
+        let section = document.getElementById('section').value;
         console.log(tableNumber);
 
-        fetch(`/waiter/takeorder/${tableNumber}`, {
+        fetch(`/waiter/takeorder/${tableNumber}/${section}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -333,7 +335,7 @@
                 console.log('Order placed successfully');
                 // Reset the order array
                 order = [];
-                window.location.href = `/waiter/takeorder/${tableNumber}`;
+                window.location.href = `/waiter/takeorder/${tableNumber}/${section}`;
             } else {
                 console.error('Failed to place order');
             }

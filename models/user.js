@@ -24,6 +24,7 @@ const userSchema = new Schema({
         tableno: {
             type: Number
         },
+        section:String,
         serving: [{}]
     }]
 })

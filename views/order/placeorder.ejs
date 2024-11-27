@@ -85,7 +85,7 @@
             <div class="table-container">
                 <% for (let i = 1; i <= section.capacity; i++) { %>
                     <div class="table-square">
-                        <a href="/waiter/takeorder/<%= i %>"><%= i %></a>
+                        <a href="/waiter/takeorder/<%= i %>/<%= section.name %>"><%= i %></a>
                     </div>
                 <% } %>
             </div>
