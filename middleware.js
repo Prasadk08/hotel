@@ -34,7 +34,7 @@ module.exports.uniqueUsername2=async(req,res,next)=>{
         if(manager){
             console.log("i am testing")
             req.flash("error","Username not available")
-            res.redirect("/signup")
+            res.redirect("/hotel/addwaiter")
             // next(new expressError(400,"Username not available"))
         }else{
             next()

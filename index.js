@@ -20,8 +20,8 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 
-let mongoUrl = process.env.Atlas_Dburl
-// let mongoUrl = "mongodb://127.0.0.1:27017/hotel"
+//let mongoUrl = process.env.Atlas_Dburl
+let mongoUrl = "mongodb://127.0.0.1:27017/hotel"
 
 async function main() {
   try {
@@ -56,9 +56,9 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", (err) => {
-  console.log("Error in Mongo Session store", err);
-});
+// store.on("error", (err) => {
+//   console.log("Error in Mongo Session store", err);
+// });
 
 const sessionOptions = {
   store,
