@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const ejsMate = require('ejs-mate');
@@ -7,6 +8,7 @@ const localStrategy = require('passport-local')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+
 
 const hotelRoute = require('./route/hotel');
 const kitchenRoute = require('./route/kitchen');
@@ -34,7 +36,6 @@ async function main() {
 
 main();
 
-const app = express();
 const port = 8080;
 
 app.set("view engine", "ejs");
@@ -124,3 +125,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Listening on Port ${port}`);
 });
+

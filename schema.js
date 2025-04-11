@@ -26,7 +26,7 @@ module.exports.managerSchema= joi.object({
 module.exports.waiterSchema= joi.object({
     waiter:joi.object({
         name:joi.string().required(),
-        phno:joi.number().min(10).required(),
+        phno:joi.string().length(10).pattern(/^[0-9]+$/).required(),
         username: joi.string().required(),
         password: joi.string().required()
     }).required(),
